@@ -1,12 +1,15 @@
 const mongoose = require('mongoose');
 
 const ledgerEntrySchema = mongoose.Schema({
-    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    mob_num: { 
+        type: String, 
+        required: true 
+    },
     date: { type: Date, required: true },
     description: { type: String, required: true },
-    debit: { type: Number, default: 0 },  // Money going OUT (Payouts/Loss)
-    credit: { type: Number, default: 0 }, // Money coming IN (Deposits/Profit)
-    balance: { type: Number, default: 0 } // Running balance snapshot
-});
+    debit: { type: Number, default: 0 },
+    credit: { type: Number, default: 0 },
+    balance: { type: Number, default: 0 }
+}, { timestamps: true });
 
 module.exports = mongoose.model('LedgerEntry', ledgerEntrySchema);
