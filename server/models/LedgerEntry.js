@@ -11,6 +11,7 @@ const ledgerEntrySchema = mongoose.Schema({
     credit: { type: Number, default: 0 },
     balance: { type: Number, default: 0 }
 }, { timestamps: true });
+ledgerEntrySchema.index({ mob_num: 1 });
 
 module.exports = mongoose.model('LedgerEntry', ledgerEntrySchema);
-ledgerEntrySchema.index({ mob_num: 1 });
+
