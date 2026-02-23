@@ -1,7 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css'; // Import our global styles
+import './App.css';
 import Dashboard from './pages/Dashboard';
+import AdminDashboard from './pages/AdminDashboard';
+import Login from './pages/Login';
 import PnL from './pages/PnL';
 import Ledger from './pages/Ledger';
 import Trades from './pages/Trade';
@@ -11,8 +13,9 @@ function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Dashboard />} />
-        {/* We will add PnL, Ledger, Trades later */}
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/pnl" element={<PnL />} />
         <Route path="/ledger" element={<Ledger />} />
         <Route path="/trades" element={<Trades />} />
