@@ -2,19 +2,24 @@ import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 
 const Layout = ({ children, title }) => {
-    const [darkMode, setDarkMode] = useState(false);
+    // Initialize state from localStorage to persist theme across page changes
+    const [darkMode, setDarkMode] = useState(() => {
+        return localStorage.getItem('appTheme') === 'dark';
+    });
 
     // Toggle Theme Logic
     const toggleTheme = () => {
         setDarkMode(!darkMode);
     };
 
-    // Apply theme to body
+    // Apply theme to body and save preference to localStorage
     useEffect(() => {
         if (darkMode) {
             document.body.setAttribute('data-theme', 'dark');
+            localStorage.setItem('appTheme', 'dark');
         } else {
             document.body.removeAttribute('data-theme');
+            localStorage.setItem('appTheme', 'light');
         }
     }, [darkMode]);
 

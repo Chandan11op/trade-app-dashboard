@@ -1,11 +1,18 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     
     // Helper to check if link is active
     const isActive = (path) => location.pathname === path ? 'active' : '';
+
+    // Logout Function
+    const handleLogout = () => {
+        localStorage.removeItem('userInfo');
+        navigate('/login'); // Redirects back to login page
+    };
 
     return (
         <nav className="sidebar">
@@ -38,7 +45,9 @@ const Sidebar = () => {
                 <Link to="/settings" className={`nav-item ${isActive('/settings')}`}>
                     <i className="fas fa-cog"></i> Settings
                 </Link>
-                <div className="nav-item" style={{marginTop: 'auto', color: 'var(--danger)'}}>
+
+                {/* Fixed Logout Button */}
+                <div className="nav-item" onClick={handleLogout} style={{marginTop: 'auto', color: 'var(--danger)', cursor: 'pointer'}}>
                     <i className="fas fa-sign-out-alt"></i> Logout
                 </div>
             </div>
