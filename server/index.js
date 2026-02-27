@@ -1,4 +1,5 @@
 // server/index.js
+require("dotenv").config();
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -29,12 +30,12 @@ app.get('/', (req, res) => {
     res.send('API is running...');
 });
 
-app.get("/api/protected", authMiddleware, (req,res) => {
-    res.json({msg: "Protected route working ✅", user: req.user});
+app.get("/api/protected", authMiddleware, (req, res) => {
+    res.json({ msg: "Protected route working ✅", user: req.user });
 })
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
